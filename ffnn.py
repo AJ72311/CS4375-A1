@@ -32,10 +32,16 @@ class FFNN(nn.Module):
 
     def forward(self, input_vector):
         # [to fill] obtain first hidden layer representation
+        # W1 transforms input to hidden size, activation adds non-linearity
+        h = self.activation(self.W1(input_vector))
 
         # [to fill] obtain output layer representation
+        # W2 transforms hidden representation to the five sentinment classes
+        z = self.W2(h)
 
         # [to fill] obtain probability dist.
+        # LogSoftmax converts scores to log-probabilities for the loss function
+        predicted_vector = self.softmax(z)
 
         return predicted_vector
 
