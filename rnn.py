@@ -31,12 +31,20 @@ class RNN(nn.Module):
 
     def forward(self, inputs):
         # [to fill] obtain hidden layer representation (https://pytorch.org/docs/stable/generated/torch.nn.RNN.html)
-        _, hidden = 
+        # output = all hidden states, hidden = last state
+        output, hidden = self.rnn(inputs)
+
         # [to fill] obtain output layer representations
+        # apply the linear layer W to all tokens in the sequence at once
+        z = self.W(output)
 
         # [to fill] sum over output 
+        # sum the logits of all tokens to represent the text
+        summed_z = torch.sum(z, dim=0)
 
         # [to fill] obtain probability dist.
+        # apply LogSoftmax to get log probabilities for the five sentiment classes
+        predicted_vector = self.softmax(summed_z)
 
         return predicted_vector
 
